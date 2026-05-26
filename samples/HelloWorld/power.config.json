@@ -1,0 +1,14 @@
+{
+  "version": "1.0",
+  "appId": "47a719aa-97bc-4be5-8a6f-afff64ea7ea5",
+  "appDisplayName": "powerUp2022",
+  "region": "prod",
+  "environmentId": "9a9abf94-c576-eaed-8e9a-0ba8f3bd2601",
+  "description": " ",
+  "buildPath": "./dist",
+  "buildEntryPoint": "index.html",
+  "localAppUrl": "http://localhost:3000",
+  "logoPath": "Default",
+  "connectionReferences": {},
+  "databaseReferences": {}
+}
