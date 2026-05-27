@@ -1,3 +1,20 @@
+# 🚀 Modernização: Power Apps Canvas para React (Code Apps)
+
+Este projeto faz parte de uma iniciativa de modernização tecnológica, transcrevendo um aplicativo originalmente desenvolvido em **Power Apps Canvas (Low-Code)** para **React (Pro-Code)** utilizando o framework de **Code Apps**.
+
+### 🛠 Por que a transição?
+Não se trata apenas de uma cópia visual, mas de uma reengenharia focada em:
+
+- **UX/UI Superior:** Implementação do **Fluent UI v9**, garantindo uma interface nativa, acessível e consistente com o ecossistema Microsoft.
+- **Performance:** Redução do overhead de renderização do Canvas App para um bundle otimizado em React.
+- **Manutenibilidade:** Uso de TypeScript e padrões de arquitetura de software para facilitar a evolução do código.
+- **Flexibilidade:** Controle total sobre estados complexos e integrações que excedem os limites das fórmulas Power Fx.
+
+### 📝 Origem do Projeto
+A base de referência para esta migração foi a tela de inscrição (`scrInscricao.fx.yaml`) do aplicativo de Hackathon. O objetivo foi preservar a regra de negócio original, elevando a experiência do usuário através de técnicas como *Glassmorphism* e layouts responsivos avançados.
+
+---
+
 # Getting Started 🚀
 
 ## 1. Clone this repository

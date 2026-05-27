@@ -8,9 +8,13 @@ import {
   webDarkTheme,
   Card,
   Button,
-  Avatar
+  Avatar,
+  DrawerBody,
+  DrawerHeader,
+  DrawerHeaderTitle,
+  OverlayDrawer,
 } from '@fluentui/react-components';
-import { RocketRegular, DocumentTextRegular } from '@fluentui/react-icons';
+import { RocketRegular, DocumentTextRegular, ChatRegular, DismissRegular } from '@fluentui/react-icons';
 
 import './App.css';
 
@@ -82,7 +86,34 @@ const useStyles = makeStyles({
     marginTop: '20px',
     opacity: 0.4,
     fontSize: tokens.fontSizeBase100,
-  }
+  },
+  drawerBody: {
+    ...shorthands.padding(0),
+    overflowY: 'hidden',
+    display: 'flex',
+    flexDirection: 'column',
+  },
+  iframe: {
+    flexGrow: 1,
+    ...shorthands.border('none'),
+    width: '100%',
+    height: '100%',
+  },
+  chatFab: {
+    position: 'fixed',
+    bottom: '32px',
+    right: '32px',
+    zIndex: 1000,
+    height: '56px',
+    width: '56px',
+    ...shorthands.borderRadius('50%'),
+    boxShadow: tokens.shadow28,
+    backgroundColor: '#FFC638',
+    color: '#1F1F1F',
+    ':hover': {
+      backgroundColor: '#E5B132',
+    },
+  },
 });
 
 const App: React.FC = () => {
@@ -91,6 +122,7 @@ const App: React.FC = () => {
   // Estados simulando a lógica do Power Apps (scrInscricao.fx.yaml)
   const [currentUser] = useState("Rafael Bernardino Alves");
   const [isRegistered] = useState(false);
+  const [isChatOpen, setIsChatOpen] = useState(false);
 
   return (
     <FluentProvider theme={webDarkTheme}>
@@ -156,9 +188,48 @@ const App: React.FC = () => {
           )}
           
           <Text className={styles.versionTag}>
-            Build Version: v{__APP_VERSION__}
+            Build Version: v{typeof __APP_VERSION__ !== 'undefined' ? __APP_VERSION__ : 'Local-Dev'}
           </Text>
         </Card>
+
+        {/* Janela Lateral (Drawer) para o Copilot */}
+        <OverlayDrawer
+          position="end"
+          open={isChatOpen}
+          onOpenChange={(_, { open }) => setIsChatOpen(open)}
+          style={{ width: '450px', maxWidth: '90vw' }}
+        >
+          <DrawerHeader>
+            <DrawerHeaderTitle
+              action={
+                <Button
+                  appearance="subtle"
+                  aria-label="Fechar"
+                  icon={<DismissRegular />}
+                  onClick={() => setIsChatOpen(false)}
+                />
+              }
+            >
+              Interconnected Quest Agent
+            </DrawerHeaderTitle>
+          </DrawerHeader>
+          <DrawerBody className={styles.drawerBody}>
+            <iframe 
+              src="https://copilotstudio.microsoft.com/environments/9a9abf94-c576-eaed-8e9a-0ba8f3bd2601/bots/ntt_NTTAgent/webchat?__version__=2" 
+              className={styles.iframe}
+              title="Interconnected Quest Agent Chat"
+            />
+          </DrawerBody>
+        </OverlayDrawer>
+
+        {/* Botão Flutuante para abrir o Chat */}
+        <Button
+          shape="circular"
+          icon={<ChatRegular fontSize={28} />}
+          className={styles.chatFab}
+          onClick={() => setIsChatOpen(true)}
+          title="Falar com Assistente"
+        />
       </div>
     </FluentProvider>
   );
